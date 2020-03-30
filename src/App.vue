@@ -1,27 +1,22 @@
 <template>
   <div id="app">
-    <mt-header fixed title="Vue-demo"></mt-header>
+    <el-page-header content="首页"></el-page-header>
 
     <h1>nb</h1>
 
-    <mt-tabbar v-model="selected">
-      <mt-tab-item id="外卖">
-        <span slot="icon" class="glyphicon glyphicon-home"></span>
-        首页
-      </mt-tab-item>
-      <mt-tab-item id="订单">
-        <span slot="icon" class="glyphicon glyphicon-user"></span>
-        会员
-      </mt-tab-item>
-      <mt-tab-item id="发现">
-        <span slot="icon" class="glyphicon glyphicon-shopping-cart"></span>
-        购物
-      </mt-tab-item>
-      <mt-tab-item id="我的">
-        <span slot="icon" class="glyphicon glyphicon-search"></span>
-        搜索
-      </mt-tab-item>
-    </mt-tabbar>
+    <el-menu
+      :default-active="activeIndex2"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
+      <el-menu-item index="2"><i class="el-icon-s-custom"></i>会员</el-menu-item>
+      <el-menu-item index="3"><i class="el-icon-shopping-cart-2"></i>购物</el-menu-item>
+      <el-menu-item index="4"><i class="el-icon-search"></i>搜索</el-menu-item>
+    </el-menu>
 
   </div>
 </template>
@@ -32,15 +27,31 @@ export default {
 }
 </script>      
 
-<style scoped>
-#app{
-  padding-top:40px;
+<style>
+.el-menu{
+  position: fixed;
+  bottom: 0;
+  width:100vw;
+  margin-left: -8px;
 }
-a.mint-tab-item{
-  text-decoration: none;
-  /* color:grey; */
+.el-menu li{
+  width:25%;
+  text-align: center;
 }
-.glyphicon{
-  font-size: 20px;
+.el-page-header{
+  background-color: #545c64;
+  color:#fff;
+  margin:-8px;
+  height: 35px;
+  line-height: 35px;
+}
+.el-page-header__left div{
+  font-size:16px;
+}
+.el-page-header__content{
+  color:#fff;
+  position: fixed;
+  left:50%;
+  transform: translateX(-50%);
 }
 </style>
