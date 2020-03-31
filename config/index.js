@@ -31,6 +31,7 @@ module.exports = {
     /**
      * Source Maps
      */
+    cssSourceMap: true,
 
     // https://webpack.js.org/configuration/devtool/#development
     devtool: 'cheap-module-eval-source-map',
@@ -39,8 +40,6 @@ module.exports = {
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
-
-    cssSourceMap: true
   },
 
   build: {

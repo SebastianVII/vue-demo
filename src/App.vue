@@ -1,8 +1,11 @@
 <template>
-  <div id="app">
+  <div id="app-container">
+
     <el-page-header content="首页"></el-page-header>
 
-    <h1>nb</h1>
+    <transition>
+      <router-view></router-view>
+    </transition>
 
     <el-menu
       :default-active="activeIndex2"
@@ -12,10 +15,10 @@
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="1"><i class="el-icon-s-home"></i>首页</el-menu-item>
-      <el-menu-item index="2"><i class="el-icon-s-custom"></i>会员</el-menu-item>
-      <el-menu-item index="3"><i class="el-icon-shopping-cart-2"></i>购物</el-menu-item>
-      <el-menu-item index="4"><i class="el-icon-search"></i>搜索</el-menu-item>
+      <el-menu-item index="1"><router-link to='/home'><i class="el-icon-s-home"></i>首页</router-link></el-menu-item>
+      <el-menu-item index="2"><router-link to='/member'><i class="el-icon-s-custom"></i>会员</router-link></el-menu-item>
+      <el-menu-item index="3"><router-link to='/shop'><i class="el-icon-shopping-cart-2"></i>购物</router-link></el-menu-item>
+      <el-menu-item index="4"><router-link to='/search'><i class="el-icon-search"></i>搜索</router-link></el-menu-item>
     </el-menu>
 
   </div>
@@ -28,11 +31,17 @@ export default {
 </script>      
 
 <style>
+*{
+  margin:0;
+  padding:0;
+}
+#app-container{
+  overflow-x: hidden;
+}
 .el-menu{
   position: fixed;
   bottom: 0;
   width:100vw;
-  margin-left: -8px;
 }
 .el-menu li{
   width:25%;
@@ -41,9 +50,8 @@ export default {
 .el-page-header{
   background-color: #545c64;
   color:#fff;
-  margin:-8px;
-  height: 35px;
-  line-height: 35px;
+  height: 45px;
+  line-height: 45px;
 }
 .el-page-header__left div{
   font-size:16px;
@@ -53,5 +61,26 @@ export default {
   position: fixed;
   left:50%;
   transform: translateX(-50%);
+}
+.el-page-header__left::after{
+  height: 27px;
+}
+.el-page-header__left{
+  display: none;
+}
+a, .router-link-exact-active, .router-link-active{
+  text-decoration: none;
+}
+.v-enter{
+  opacity:0;
+  transform: translateX(100%);
+}
+.v-leave-to{
+  opacity:0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+.v-enter-active,.v-leave-active{
+  transition: all .5s ease;
 }
 </style>
