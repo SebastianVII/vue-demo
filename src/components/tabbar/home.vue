@@ -9,7 +9,11 @@
 
       <div class="el">
         <el-row>
-          <el-col :span="8"><div class="grid-content bg-purple"><el-button type="success" icon="el-icon-tickets" circle></el-button>新闻资讯</div></el-col>
+          <el-col :span="8">
+            <div class="grid-content bg-purple">
+              <router-link to="/home/newslist"><el-button type="success" icon="el-icon-tickets" circle></el-button></router-link>新闻资讯
+            </div>
+          </el-col>
           <el-col :span="8"><div class="grid-content bg-purple-light"><el-button type="danger" icon="el-icon-picture-outline" circle></el-button>图片分享</div></el-col>
           <el-col :span="8"><div class="grid-content bg-purple"><el-button type="primary" icon="el-icon-shopping-cart-full" circle></el-button>商品购买</div></el-col>
         </el-row>
@@ -35,9 +39,9 @@ export default {
   },
   methods:{
     getSwipe(){
-      this.axios.get('http://www.liulongbin.top:3005/api/getlunbo')
-      .then(result=>
-        result.data.message.splice(1,1)&&result.data.status==0?this.swipeList=result.data.message:alert('error')
+      this.axios.get('api/getlunbo')
+      .then(resolve=>
+        resolve.data.message.splice(1,1)&&resolve.data.status==0?this.swipeList=resolve.data.message:alert('error')
       )
     }
   }

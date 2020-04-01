@@ -8,10 +8,9 @@
     </transition>
 
     <el-menu
-      :default-active="activeIndex2"
+      default-active="1"
       class="el-menu-demo"
       mode="horizontal"
-      @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
@@ -37,9 +36,13 @@ export default {
 }
 #app-container{
   overflow-x: hidden;
+  position: relative;
+  padding-bottom: 60px;
+  padding-top: 45px;
 }
 .el-menu{
   position: fixed;
+  z-index: 99;
   bottom: 0;
   width:100vw;
 }
@@ -52,18 +55,16 @@ export default {
   color:#fff;
   height: 45px;
   line-height: 45px;
-}
-.el-page-header__left div{
-  font-size:16px;
+  position: fixed;
+  z-index: 99;
+  top:0;
+  width:100vw;
 }
 .el-page-header__content{
   color:#fff;
-  position: fixed;
+  position: relative;
   left:50%;
   transform: translateX(-50%);
-}
-.el-page-header__left::after{
-  height: 27px;
 }
 .el-page-header__left{
   display: none;
@@ -71,6 +72,8 @@ export default {
 a, .router-link-exact-active, .router-link-active{
   text-decoration: none;
 }
+</style>
+<style scoped>
 .v-enter{
   opacity:0;
   transform: translateX(100%);
