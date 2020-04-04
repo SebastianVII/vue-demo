@@ -7,7 +7,7 @@
                 <i class="header-icon el-icon-info"></i>{{" "+item.title}}
             </template>
             <router-link :to="'/home/newsinfo/'+item.id">
-                <div>{{item.zhaiyao}}</div><br>
+                <div>{{item.zhaiyao}}</div>
                 <div>
                     <span>发表时间：{{item.add_time | time}}</span><span>点击：{{item.click}}次</span>
                 </div>
@@ -63,6 +63,11 @@ export default {
 }
 .el-collapse-item__content{
     color:rgb(151, 151, 151);
+}
+.el-collapse-item__content div:nth-of-type(1):after{
+    content: '';
+    display: block;
+    height:1em;
 }
 .el-collapse-item__wrap div:nth-of-type(2){
     display:flex;

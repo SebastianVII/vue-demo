@@ -16,11 +16,14 @@ import VueAxios from 'vue-axios'
 
 import moment from 'moment'
 
+import VuePreview from 'vue-preview'
+
 Vue.config.productionTip = false
 axios.defaults.baseURL="http://www.liulongbin.top:3005"
 Vue.use(ElementUI);
 Vue.use(MintUI)
 Vue.use(VueAxios, axios)
+Vue.use(VuePreview)
 
 Vue.filter('time',function(data, pattern="YYYY-MM-DD HH:mm:ss"){
   return moment(data).format(pattern)

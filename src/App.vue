@@ -16,7 +16,7 @@
       active-text-color="#ffd04b">
       <el-menu-item index="1"><router-link to='/home'><i class="el-icon-s-home"></i>首页</router-link></el-menu-item>
       <el-menu-item index="2"><router-link to='/member'><i class="el-icon-s-custom"></i>会员</router-link></el-menu-item>
-      <el-menu-item index="3"><router-link to='/shop'><i class="el-icon-shopping-cart-2"></i>购物</router-link></el-menu-item>
+      <el-menu-item index="3"><router-link to='/shop'><i class="el-icon-shopping-cart-2"></i>购物<mt-badge type="error" id="badge">1</mt-badge></router-link></el-menu-item>
       <el-menu-item index="4"><router-link to='/search'><i class="el-icon-search"></i>搜索</router-link></el-menu-item>
     </el-menu>
 
@@ -29,7 +29,7 @@ export default {
 }
 </script>      
 
-<style>
+<style lang="scss">
 *{
   margin:0;
   padding:0;
@@ -39,6 +39,33 @@ export default {
   position: relative;
   padding-bottom: 60px;
   padding-top: 45px;
+  .el-menu--horizontal>.el-menu-item a, .el-menu--horizontal>.el-menu-item a:hover {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    position: relative;
+    i{
+      width:auto;
+      font-size: 25px;
+      margin:8px 0 -20px 0;
+    }
+    .mint-badge{
+        border-radius: 50%;
+        height:14px;
+        width:14px;
+        position: absolute;
+        z-index: 99;
+        padding:0;
+        background: #f15954;
+        font-size:12px;
+        line-height: 14px;
+        color:white;
+        text-align: center;
+        top:2px;
+        right: calc(50% - 1.3em);
+        transform: translateX(50%);
+      }
+  }
 }
 .el-menu{
   position: fixed;

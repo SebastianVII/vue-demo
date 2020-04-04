@@ -1,11 +1,7 @@
 <template>
   <div>
 
-      <mt-swipe :auto="2000">
-        <mt-swipe-item v-for="item in swipeList" :key="item.id">
-          <img :src="item.img" alt="">
-        </mt-swipe-item>
-      </mt-swipe>
+      <swiper :swipeList="swipeList"></swiper>
 
       <div class="el">
         <el-row>
@@ -14,8 +10,16 @@
               <router-link to="/home/newslist"><el-button type="success" icon="el-icon-tickets" circle></el-button></router-link>新闻资讯
             </div>
           </el-col>
-          <el-col :span="8"><div class="grid-content bg-purple-light"><el-button type="danger" icon="el-icon-picture-outline" circle></el-button>图片分享</div></el-col>
-          <el-col :span="8"><div class="grid-content bg-purple"><el-button type="primary" icon="el-icon-shopping-cart-full" circle></el-button>商品购买</div></el-col>
+          <el-col :span="8">
+            <div class="grid-content bg-purple-light">
+              <router-link to="/home/photolist"><el-button type="danger" icon="el-icon-picture-outline" circle></el-button></router-link>图片分享
+            </div>
+          </el-col>
+          <el-col :span="8">
+            <div class="grid-content bg-purple">
+              <router-link to="/home/goodslist"><el-button type="primary" icon="el-icon-shopping-cart-full" circle></el-button></router-link>商品购买
+            </div>
+          </el-col>
         </el-row>
         <el-row>
           <el-col :span="8"><div class="grid-content bg-purple"><el-button type="danger" icon="el-icon-s-order" circle class="color-change"></el-button>留言反馈</div></el-col>
@@ -28,6 +32,8 @@
 </template>
 
 <script>
+import swiper from '../sub/swiper.vue'
+
 export default {
   created(){
     this.getSwipe()
@@ -44,22 +50,14 @@ export default {
         resolve.data.message.splice(1,1)&&resolve.data.status==0?this.swipeList=resolve.data.message:alert('error')
       )
     }
+  },
+  components:{
+    swiper
   }
 }
 </script>
 
 <style>
-.mint-swipe{
-  height:25vh;
-  transform: translateZ(0);
-}
-.mint-swipe-item{
-  background-color:grey;
-}
-img{
-  width:100%;
-  height:100%;
-}
 .el{
   margin-top:20px;
 }

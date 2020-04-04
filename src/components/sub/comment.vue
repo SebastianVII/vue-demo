@@ -8,9 +8,9 @@
         type="textarea"
         :autosize="{ minRows: 3, maxRows: 4}"
         placeholder="请输入评论的内容---"
-        v-model="text">
+        v-model="comment">
       </el-input>
-      <el-button type="primary" icon="el-icon-edit">发表评论</el-button>
+      <el-button type="primary" icon="el-icon-edit" @click="postComment">发表评论</el-button>
 
       <el-card class="box-card">
         <div slot="header" class="clearfix">
@@ -36,7 +36,7 @@ export default {
     },
     data(){
         return {
-            text:'',
+            comment:'',
             pageIndex:1,
             commentsList:[]
         }
@@ -51,6 +51,15 @@ export default {
         loadMore(){
             this.pageIndex++
             this.getComments()
+        },
+        postComment(){
+            this.axios.post('api/postcomment/'+this.id,{content:this.comment.trim()})
+            .then(resolve=>{
+                resolve.data.status==0?
+                this.commentsList.unshift({user_name:'匿名用户',add_time:Date.now(),content:this.comment.trim()})
+                :alert('error')
+                this.comment=''
+            })
         }
     },
     props:['id']

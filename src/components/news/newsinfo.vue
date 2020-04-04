@@ -65,6 +65,6 @@ export default {
 }
 .news-info div:nth-of-type(2) img{
     width:100%;
-    height:100%''
+    height:100%;
 }
 </style>
