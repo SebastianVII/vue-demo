@@ -14,7 +14,7 @@
             </p>
             <p class="buy">购买数量：
                 <template>
-                    <el-input-number v-model="selectedNum" :min="1" :max="goodsInfo.stock_quantity" label="购买数量" size="mini"></el-input-number>
+                    <el-input-number v-model="num" :min="1" :max="goodsInfo.stock_quantity" label="购买数量" size="mini"></el-input-number>
                     <transition
                         @before-enter="beforeEnter"
                         @enter="enter"
@@ -24,7 +24,7 @@
                 </template>
             </p>
             <p class="btn">
-                <el-button type="danger" @click="addCarShop">加入购物车</el-button>
+                <el-button type="danger" @click="addShopCar">加入购物车</el-button>
                 <el-button type="primary">立即购买</el-button>
             </p>
         </div>
@@ -60,7 +60,7 @@ export default {
         return {
             id:this.$route.params.id,
             swipeList:[],
-            selectedNum:1,
+            num:1,
             goodsInfo:{},
             ballShow:false
         }
@@ -88,9 +88,17 @@ export default {
         goComment(id){
             this.$router.push({name:'goodscomment',params:{id}})
         },
-        addCarShop(){
+        addShopCar(){
             this.ballShow=!this.ballShow
-            
+            let goods={
+                id:this.id,
+                cnt:this.num,
+                price:this.goodsInfo.sell_price,
+                selected:true
+            }
+            setTimeout(()=>{
+                this.$store.commit('addShopCar',goods)
+            },700)
         },
         beforeEnter(el){
             el.style.transform="translate(0,0)"
@@ -109,7 +117,7 @@ export default {
         },
         afterEnter(el){
             this.ballShow=!this.ballShow
-        }
+        },
     },
     components:{
         swiper

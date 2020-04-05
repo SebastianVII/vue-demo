@@ -1,6 +1,6 @@
 <template>
   <div>
-      <mt-swipe :auto="3000">
+      <mt-swipe :auto="2500">
         <mt-swipe-item v-for="item in swipeList" :key="item.id">
           <img :src="item.img" alt="">
         </mt-swipe-item>
