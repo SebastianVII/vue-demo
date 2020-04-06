@@ -1,23 +1,23 @@
 <template>
   <div id="app-container">
 
-    <el-page-header content="首页" :id="isHome?'head':''" @back="goBack"></el-page-header>
+    <el-page-header :content="headName" :id="isHome?'head':''" @back="goBack"></el-page-header>
 
     <transition>
       <router-view></router-view>
     </transition>
 
     <el-menu
-      :default-active="getDefault()"
+      :default-active="getPath()"
       class="el-menu-demo"
       mode="horizontal"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-menu-item index="1"><router-link to='/home'><i class="el-icon-s-home"></i>首页</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to='/member'><i class="el-icon-s-custom"></i>会员</router-link></el-menu-item>
-      <el-menu-item index="3"><router-link to='/shop'><i class="el-icon-shopping-cart-2"></i>购物<mt-badge type="error" id="badge" :style="$store.getters.allCnt?'':'opacity:0'">{{$store.getters.allCnt}}</mt-badge></router-link></el-menu-item>
-      <el-menu-item index="4"><router-link to='/search'><i class="el-icon-search"></i>搜索</router-link></el-menu-item>
+      <el-menu-item index="首页"><router-link to='/home'><i class="el-icon-s-home"></i>首页</router-link></el-menu-item>
+      <el-menu-item index="会员"><router-link to='/member'><i class="el-icon-s-custom"></i>会员</router-link></el-menu-item>
+      <el-menu-item index="购物"><router-link to='/shop'><i class="el-icon-shopping-cart-2"></i>购物<mt-badge type="error" id="badge" :style="$store.getters.allCnt?'':'opacity:0'">{{$store.getters.allCnt}}</mt-badge></router-link></el-menu-item>
+      <el-menu-item index="搜索"><router-link to='/search'><i class="el-icon-search"></i>搜索</router-link></el-menu-item>
     </el-menu>
 
   </div>
@@ -37,12 +37,18 @@ export default {
         /^\/shop/,
         /^\/search/,
       ],
-      isHome:false
+      isHome:false,
+      headName:'首页'
     }
   },
   methods:{
-    getDefault(){
-      return JSON.stringify(this.defaultPath.findIndex(item=>this.$route.path.search(item)==0)+1)
+    getPath(){
+      switch(this.defaultPath.findIndex(item=>this.$route.path.search(item)==0)){
+        case 0: return "首页"; 
+        case 1: return "会员";
+        case 2: return "购物"; 
+        case 3: return "搜索"; 
+      }
     },
     goBack(){
       this.$router.go(-1)
@@ -51,6 +57,8 @@ export default {
   watch:{
     '$route.path'(newVal){
       newVal=='/home'?this.isHome=true:this.isHome=false
+
+      this.headName=this.getPath()
     }
   }
 }
@@ -139,7 +147,7 @@ export default {
   transform: translateX(-50%);
 }
 .el-page-header__left{
-  margin-left: 10px;
+  margin-left: 8px;
   i,div{
     font-size: 16px;
     font-weight: 300;
